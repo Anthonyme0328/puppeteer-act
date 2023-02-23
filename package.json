@@ -1,0 +1,23 @@
+{
+  "name": "puppeteer-act",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anthonyme0328/puppeteer-act.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Anthonyme0328/puppeteer-act/issues"
+  },
+  "homepage": "https://github.com/Anthonyme0328/puppeteer-act#readme",
+  "dependencies": {
+    "puppeteer": "^19.7.2"
+  }
+}
