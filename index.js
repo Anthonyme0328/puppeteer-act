@@ -4,18 +4,45 @@ const puppeteer = require("puppeteer");
 
   const browser = await puppeteer.launch({headless: false});
   const page = await browser.newPage()
-  await page.goto("https://anthonyme0328.github.io/Rock_Paper_Scissors_Game/")
+  await page.goto("https://quotes.toscrape.com/")
 
-  // await page.screenshot({path:"https://anthonyme0328.github.io/to-do-list/"})
+  const grabQuotes = await page.evaluate(() => {
+    const quotes = document.querySelectorAll(".quote")
 
-  const grabPara = await page.evaluate(() => {
-    const pgTag = document.querySelectorAll(".scoreboard")
-    return pgTag.innerText
+    let quotesArr = []
+    quotes.forEach((quoteTag) => {
+      const quoteInfo = quoteTag.querySelectorAll("span")
+      const actQuote = quoteInfo[0]
+      const actAuthor = quoteInfo[1]
+
+      const authorName = actAuthor.querySelector("small")
+
+      quotesArr.push({quote: actQuote.innerText, author: authorName.innerText})
+
+    })
+    return quotesArr
   })
 
+  console.log(grabQuotes)
 
-  console.log(grabPara)
 
 
   await browser.close()
+})();
+
+(async () =>  {
+
+  const browser = await puppeteer.launch({headless: false});
+  const page = await browser.newPage()
+  await page.goto("https://quotes.toscrape.com/")
+
+  await page.click("a[href='/login']")
+
+  await page.type("#username", "Anthony")
+  await page.type("#password", "test")
+
+  await page.click("input[value='Login']")
+
+  
+  // await browser.close()
 })();
